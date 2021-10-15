@@ -1,9 +1,9 @@
 <template>
-    <div id="app">
-          <nav class="navbar navbar-expand  " id="nav">
+    <div id="Navbar"> 
+       <nav class="navbar navbar-expand  " id="nav">
             <a href="">
               <div  class="logo">
-                <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.svg">
+                <img alt="Vue logo" src="../assets/icon-left-font-monochrome-white.svg">
               </div>
             </a>
               <div class="navbar-nav mr-auto">
@@ -19,10 +19,6 @@
               </div>
               <div class="line"></div>
           </nav>
-        <div>
-          <router-view/>
-        </div>
-      
     </div>
 </template>
 
@@ -32,6 +28,8 @@
 
 
 export default {
+
+
   data(){
     return {
       connecter:null,
