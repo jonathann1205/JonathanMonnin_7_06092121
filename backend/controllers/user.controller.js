@@ -34,7 +34,7 @@ exports.create = (req, res) => {
 //  connexion de l'utilisateur
 exports.login = (req, res, next) => {
   const protectEmail = cryptoJs.HmacSHA512(req.body.email, process.env.cleToken).toString(cryptoJs.enc.Base64)
-    User.findOne({  email: protectEmail })
+    User.findOne({ where:{ email: protectEmail} })
       .then(user => {
         if (!user) {
           return res.status(401).json({ error: 'Utilisateur non trouvé !' });
@@ -46,6 +46,7 @@ exports.login = (req, res, next) => {
             }
             res.status(200).json({
               id: user.id,
+              lastname: user.lastname,
               token: jwt.sign(
                 { userId: user._id },
                 'RANDOM_TOKEN_SECRET',

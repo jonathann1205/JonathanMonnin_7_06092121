@@ -8,21 +8,30 @@
                 <b-card-group deck>
                     <b-card :img-src="articles.image" img-alt="Card image" img-top>
                        
-                        <b-card-text class="comment">
-                       <p>Poster par </p>
+                        <b-card-text class="post">
+                       <p>Poster par {{articles.lastnameUser}}  </p>
                         </b-card-text>
                     </b-card>
                 </b-card-group>
-                  <b-card-footer>
-                    <!-- <createCommentaire /> -->
-                    <a v-on:click="createComment(article.id)" class="article__comment">commentaire</a>
-                    <!-- <Commentaires/> -->
+                <b-card-footer>
+                    <a  class="article__comment"><Commentaire/></a>
+                    <div v-for="(commentaire , idx) in Commentaires" v-bind:key="idx">
+                        <p>Commenter par {{commentaire.lastnameUser}} </p>
+                        <b-card :img-src="commentaire.image" img-alt="Card image" img-top>
+                        <b-card-text>
+                        <p> {{commentaire.message}} </p>
+                        </b-card-text>
+                        
+                    </b-card>
+                        
+                        
+                    </div>   
                 </b-card-footer>
             </div>
         </div>
         <div  class=" col-12  d-flex justify-content-center">
-            <b-button v-on:click="deleteArticle(articles.id)" variant="danger">Supprimer</b-button>
-            <b-button v-on:click="modifyArticles(articles.id)" variant="success"><ModifPost/></b-button>
+            <b-button v-on:click="deleteArticle(articles.id), deleteCommentaire(id)" v-if="articles.userId == this.userid" variant="danger">Supprimer</b-button>
+            <b-button v-on:click="modifyArticles(articles.id)" v-if="articles.userId == userid" variant="success"><ModifPost/></b-button>
         </div>
     </div>
         
@@ -32,11 +41,11 @@
 <script>
 import axios from "axios"
 import ModifPost from "./ModifPost.vue";
-
+import Commentaire from "./Commentaire.vue";
 export default {
         components: {
         ModifPost, 
-      
+        Commentaire
 
         },   
         data() {
@@ -44,7 +53,9 @@ export default {
                 articles:null,
                 loading: true,
                 errored: false,
-                id:""
+                id:"",
+                userid: localStorage.getItem('userId'),
+                Commentaires:null,
             }
         },
         methods:{
@@ -61,8 +72,8 @@ export default {
                 }
             })
             .then(() => {
-                alert('article supprimé');
-                document.location.reload();
+                alert('article et commentaire supprimés');
+                location.replace("http://localhost:8080/#/Mur")
             })
             .catch(error => console.log(error));
             },
@@ -84,15 +95,33 @@ export default {
             })
             .catch(error => console.log(error));
             },
+
+
+            // suprime les commentaires 
+             deleteCommentaire(id){
+            const articleId = this.id;
+            const token = localStorage.getItem('token');
+            const url = 'http://localhost:3000/api/commentaire/' + articleId
+            axios.delete(url, {
+                headers :{
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(() => {
+                
+                console.log('commentaire supprimé');
+            })
+            .catch(error => console.log(error));
+        },
+
         
         },
         mounted () {
             const token = localStorage.getItem('token');
-
-           
             this.id = this.$route.query.id
             
-            console.log(this.id)
+            
              const header = {
                 headers: {
                     'Content-Type': 'application/json',
@@ -105,17 +134,37 @@ export default {
             .then(res=> {
                 const data = res.data;
                 this.articles = data;
-                console.log(data)
+                
                 
             })
             .catch(error => {
                 console.log(error)
                 this.errored = true
             })
-            .finally(() => this.loading = false)
+            .finally(() => this.loading = false);
+
+
+
+            //  recupraration des commentaires
+            const articleId = this.id;
+            
+            const url = 'http://localhost:3000/api/commentaire/' + articleId
+            axios.get(url, {
+                headers :{
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(res => {
+                    const data = res.data;
+                    this.Commentaires = data;
+                    console.log(this.Commentaires);
+                })
+            .catch(error => console.log(error));
+        },
             
             
-        },    
+         
         
         
 }

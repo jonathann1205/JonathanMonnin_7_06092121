@@ -1,4 +1,4 @@
-module.exports = (sequelize, Sequelize, user) => {
+module.exports = (sequelize, Sequelize) => {
   const Articles =  sequelize.define('article', {
      'message': {
        type: Sequelize.STRING,
@@ -15,6 +15,11 @@ module.exports = (sequelize, Sequelize, user) => {
        allowNull: false,
        requierd: true
      },
+     'lastnameUser': {
+      type: Sequelize.STRING,
+      allowNull: false,
+      required: true
+    },
      'createdAt': {
        allowNull: false,
        type: Sequelize.DATE,
@@ -30,6 +35,6 @@ module.exports = (sequelize, Sequelize, user) => {
      tableName: 'Articles',
      freezeTableName: true
    });
-  //  Articles.belongsTo(user, { foreignKey: 'userId', onDelete:'cascade' });
+  //  Articles.belongsTo(user, { foreignKey: 'Id', onDelete:'cascade' });
    return Articles
  };

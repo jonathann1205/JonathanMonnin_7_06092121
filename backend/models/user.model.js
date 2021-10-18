@@ -13,10 +13,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       password: {
-        type: Sequelize.STRING(64)
+        type: Sequelize.STRING
       },
     
     });
-    
+  
     return User;
   };

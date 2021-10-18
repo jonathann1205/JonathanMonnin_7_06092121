@@ -15,11 +15,9 @@
                 <b-card-group deck>
                     <b-card :img-src="article.image" img-alt="Card image" img-top>
                         <b-card-text>
+                        <p>Poster par {{article.lastnameUser}} </p>
+                        </b-card-text>
                         
-                        </b-card-text>
-                        <b-card-text class="comment">
-                        <p>Poster par </p>
-                        </b-card-text>
                     </b-card>
                 </b-card-group>
             </div>
@@ -72,7 +70,7 @@ export default {
             .then(res=>  {
                 const data = res.data;
                 this.articles = data;
-            
+              
                 
             })
             .catch(error => {

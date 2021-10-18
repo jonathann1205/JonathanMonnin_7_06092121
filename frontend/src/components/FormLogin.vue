@@ -46,7 +46,7 @@ import axios from 'axios';
         form: {
           email: '',
           password: '',
-        
+          connecter:'',
         },
         
     
@@ -62,7 +62,7 @@ import axios from 'axios';
                 "email": this.form.email,
                 "password": this.form.password
             }
-           
+            console.log(userLogin);
 
             const url = "http://localhost:3000/api/auth/login"
            
@@ -71,7 +71,10 @@ import axios from 'axios';
             .then(function (response) {
               localStorage.setItem('token',response.data.token)
               localStorage.setItem('userId', parseInt(response.data.id));
-              location.replace("http://localhost:8080/#/Mur")  
+              localStorage.setItem('lastname', (response.data.lastname));
+              console.log(response.data);
+              location.replace("http://localhost:8080/#/Mur")
+              localStorage.setItem('connect', true);  
               
             })
             .catch(function (error) {
@@ -82,7 +85,8 @@ import axios from 'axios';
 
       },
 
-
+      
+      
     
    },
     

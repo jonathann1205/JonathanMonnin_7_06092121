@@ -9,6 +9,7 @@ exports.createArticle = (req, res, next) => {
   const article = new Articles({
     message: req.body.message,
     userId: req.body.userId,
+    lastnameUser: req.body.lastname,
     image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
   });
   article.save()
@@ -26,7 +27,7 @@ exports.createArticle = (req, res, next) => {
 
 exports.findAll = (req, res, next) => {
   Articles.findAll({
-    // include: [{model: User}],
+
     order: [['updatedAt', "DESC"], ['createdAt', "DESC"]] })
     .then(data => {
       res.send(data);

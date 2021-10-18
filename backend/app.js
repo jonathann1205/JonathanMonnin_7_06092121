@@ -13,10 +13,10 @@ const db = require("./models");
 // app.use(cors(corsOptions));
 
 
-// const postRoutes = require('./routes/post');
+
 const userRoutes = require('./routes/user.routes');
 const postRoutes = require('./routes/post.routes');
-
+const commentaireRoutes = require('./routes/commentaire.routes');
 
 // connection a la base de donnée
 db.sequelize.sync();
@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 
   app.use('/api/auth', userRoutes);
   app.use('/api/post', postRoutes);
-
+  app.use('/api/commentaire', commentaireRoutes);
   
 
 
