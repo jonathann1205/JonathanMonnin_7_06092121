@@ -1,19 +1,19 @@
 <template>
-<div>
+<div class="bodyPost">
     <div class="createPost">
        <CreatePost/> 
     </div>
     <div class="col-12 post">
     <div class="d-flex flex-row">
-        <h1 class=" col-12 ">Ce que vos collegue ont posté</h1>
+        <h1 class=" col-12 ">Ce que vos collegues ont posté</h1>
         
     </div>
-    <div class=" col-12 "  v-for="(article , idx) in articles" v-bind:key="idx">
-        <a :href="'/#/Post?id='+article.id" class=" col-12 d-flex justify-content-center" >
-            <div class=" col-12 col-md-4 border rounded border-dark m-1 ">
-                <h4>{{article.message}}</h4>
+    <div class=" col-12  "  v-for="(article , idx) in articles" v-bind:key="idx">
+        <a :href="'/#/Post?id='+article.id" class="  col-12 d-flex justify-content-center" >
+            <div class="cardPost col-12 col-md-4 border rounded border-dark m-1 ">
+                <h2>{{article.message}}</h2>
                 <b-card-group deck>
-                    <b-card :img-src="article.image" img-alt="Card image" img-top>
+                    <b-card class="cardPostImg" :img-src="article.image" img-alt="Card image" img-top>
                         <b-card-text>
                         <p>Poster par {{article.lastnameUser}} </p>
                         </b-card-text>
@@ -90,15 +90,33 @@ export default {
 
 <style lang="scss" scoped>
 
-
+a {
+  color: white;
+  text-decoration:none;
+  :visited{
+    color: white;
+  }
+  :link{
+    list-style: none;
+  }
+}
 .post {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
-.buttonAjout{
-    font-size:1.8rem;
-    background-color: chocolate;
-    color: white;
+
+.bodyPost{
+    background-color:#cf5157b7 ;
+    
+}
+.cardPost{
+    background-color:#132442 ;
+    
+}
+.cardPostImg{
+    
+    background-color:#132442 ;
+    
 }
 </style>

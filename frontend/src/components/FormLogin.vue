@@ -1,6 +1,6 @@
 <template>
   <div class="box-form d-flex justify-content-center align-items-center ">
-    <b-form class="col-4" @submit="onSubmit"  >
+    <b-form class="col-8 col-md-4" @submit="onSubmit"  >
       <b-form-group
         id="input-group-1"
         label="Email "

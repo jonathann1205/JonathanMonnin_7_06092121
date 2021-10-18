@@ -1,6 +1,6 @@
 <template>
   <div class="box-form d-flex justify-content-center align-items-center ">
-    <b-form class="col-4" @submit="onSubmit"  v-if="show">
+    <b-form class="col-8 col-md-4" @submit="onSubmit"  v-if="show">
 
         <b-form-group  id="input-group-3" label="Nom" label-for="input-3">
         <b-form-input

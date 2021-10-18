@@ -1,7 +1,8 @@
 <template>
     
     <div>
-       <h1>lfmqfùjq</h1>
+        <b-button class="btn-retour col-5 col-md-3 rounded  " v-on:click="goBack()" >Retour</b-button>
+        <h1>lfmqfùjq</h1>
         <div class=" col-12 d-flex justify-content-center" >
             <div class=" col-12 col-md-4 border rounded border-dark m-1 ">
                 <h2>{{articles.message}}</h2>
@@ -99,22 +100,27 @@ export default {
 
             // suprime les commentaires 
              deleteCommentaire(id){
-            const articleId = this.id;
-            const token = localStorage.getItem('token');
-            const url = 'http://localhost:3000/api/commentaire/' + articleId
-            axios.delete(url, {
-                headers :{
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            .then(() => {
-                
-                console.log('commentaire supprimé');
-            })
-            .catch(error => console.log(error));
-        },
+                const articleId = this.id;
+                const token = localStorage.getItem('token');
+                const url = 'http://localhost:3000/api/commentaire/' + articleId
+                axios.delete(url, {
+                    headers :{
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                .then(() => {
+                    
+                    console.log('commentaire supprimé');
+                })
+                .catch(error => console.log(error));
 
+                
+            },
+
+            goBack() {
+                 location.replace("http://localhost:8080/#/Mur")   
+            }
         
         },
         mounted () {
@@ -170,6 +176,10 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-
+<style  scoped>
+.btn-retour{
+    top:12.4%;
+    font-size: 1.5rem;
+    background-color: #CF5158;
+}
 </style>

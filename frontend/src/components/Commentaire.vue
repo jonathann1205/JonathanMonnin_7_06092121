@@ -2,9 +2,8 @@
             <div>
             <!--Bouton pour poster un message-->
             <b-button @click="show=true" v-model="articles" class="modal__button">COMMENTER</b-button>
-            <!--En-tête du modulable-->
+            
             <b-modal v-model="show" title="Création d'un commentaire" class="modal__title">
-                <!--Contenu du modulable-->
                 <b-container fluid>
                     <div class="article">
                         <form method="POST" v-on:submit.prevent="createCommentaire()">

@@ -1,16 +1,16 @@
 <template>
     <div id="app">
-          <nav class="navbar navbar-expand  " id="nav">
-            <a href="">
+          <nav class="navbar navbar-expand d-flex flex-wrap " id="nav">
+            <a href="/mur">
               <div  class="logo">
                 <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.svg">
               </div>
             </a>
-              <div class="navbar-nav mr-auto">
-                <li class="nav-item">
+              <div class=" navbar-nav mr-auto ">
+                <li class="nav-item d-flex flex-row justify-content-center ">
                   <router-link to="/Signup" class="nav-link 1"  v-if="!connecter" >Inscription</router-link>
                   <router-link to="/" class="nav-link 2"  v-if="!connecter" >Connexion</router-link>
-                   <router-link to="/" class="nav-link 3" :click="ConnectFalse()" v-else >Deconnexion</router-link>
+                  <router-link to="/" class="nav-link 3" :click="ConnectFalse()" v-else >Deconnexion</router-link>
                 </li>
                 <!-- <li class="nav-item">
                   <router-link to="/" class="nav-link 2"  v-else-if="!connecter" >Connexion</router-link>
@@ -66,7 +66,7 @@ export default {
   //     console.log(2);
   //   }
   // },
-  mounted() {
+  beforeCreate() {
     
     let connect = localStorage.getItem('connect');
     console.log(localStorage.getItem('connect'));
@@ -95,16 +95,24 @@ export default {
 
 <style lang="scss">
 #app {
+  position: relative;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
-#nav{
-  display: flex;
-  justify-content: space-between;
+a {
+  color: white;
+  text-decoration:none;
+  :visited{
+    color: white;
+  }
+  :link{
+    list-style: none;
+  }
 }
+
 .navbar-expand{
   background-color: #132442;
   width: 100%;
@@ -113,10 +121,16 @@ export default {
   
     & .logo{
       margin-left: 2%;
+      @media (max-width: 350px) {
+        margin-left: 0%;
+      }
     }
     & img{
       
-       width: 300px;
+      width: 300px;
+      @media (max-width: 350px) {
+        width: 260px;
+      }
     }
 
     &.router-link {
@@ -133,14 +147,15 @@ export default {
         background-color:#CF5158;
         border-radius: 5px;
             @media (max-width: 710px) {
-                top:42%;
+                top:15%;
             }
         }
 }
 
 #nav {
   padding: 30px;
-
+  display: flex;
+  justify-content: space-between;
   a {
     font-weight: bold;
     color: #CF5158;
