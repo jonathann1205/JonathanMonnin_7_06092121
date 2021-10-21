@@ -8,16 +8,9 @@
             </a>
               <div class=" navbar-nav mr-auto ">
                 <li class="nav-item d-flex flex-row justify-content-center ">
-                  <router-link to="/Signup" class="nav-link 1"  v-if="!connecter" >Inscription</router-link>
-                  <router-link to="/" class="nav-link 2"  v-if="!connecter" >Connexion</router-link>
-                  <router-link to="/" class="nav-link 3" :click="ConnectFalse()" v-else >Deconnexion</router-link>
+                  <router-link to="/Signup" class="nav-link 1" v-show="!connecter" >Inscription</router-link>
+                  <router-link to="/" class="nav-link 2" v-show="!connecter" >Connexion</router-link>
                 </li>
-                <!-- <li class="nav-item">
-                  <router-link to="/" class="nav-link 2"  v-else-if="!connecter" >Connexion</router-link>
-                </li>
-                <li class="nav-item">
-                  <router-link to="/" class="nav-link 3" :click="checkConnect" v-else="connecter"  >Deconnexion</router-link>
-                </li> -->
               </div>
               <div class="line"></div>
           </nav>
@@ -36,37 +29,18 @@
 export default {
   data(){
     return {
-      connecter: null,
+      connecter: false,
     }
   },
   methods: {
-    ConnectFalse(){
-
-        
-        
-        localStorage.setItem('connect',false);
-        this.connecter = false;
-        // document.location.reload();
-         
-        
-    }
+    
   
        
   },
 
-  // updated: function () {
-  //   let connect = localStorage.getItem('connect');
-  //   console.log(localStorage.getItem('connect'));
-  //   this.connecter = connect;  
-  //   if(connect){
-  //     this.connecter = true;
-  //     console.log(1);
-  //   } else {
-  //     this.connecter = false;
-  //     console.log(2);
-  //   }
-  // },
-  beforeCreate() {
+
+
+    mounted() {
     
     let connect = localStorage.getItem('connect');
     console.log(localStorage.getItem('connect'));
@@ -74,11 +48,11 @@ export default {
    
     if(connect){
       this.connecter = true;
-      
-      console.log(1);
+       this.$forceUpdate();
+      console.log(4);
     } else {
       this.connecter = false;
-      console.log(2);
+      console.log(5);
     }
 
     console.log(this.connecter);
@@ -164,5 +138,9 @@ a {
       color: #ffffff;
     }
   }
+}
+
+.nav-item{
+  margin-right: 2rem;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="box-form d-flex justify-content-center align-items-center ">
-    <b-form class="col-8 col-md-4" @submit="onSubmit"  v-if="show">
+    <b-form class="col-8 col-md-4" @submit="onSubmit" >
 
         <b-form-group  id="input-group-3" label="Nom" label-for="input-3">
         <b-form-input
@@ -43,17 +43,15 @@
         <b-form-input
           id="input-2"
           v-model="form.password"
+          type="password"
           placeholder="mot de passe"
           required
         ></b-form-input>
+        <span class="error" v-if="(!$v.password.isPasswordStrong) && $v.password.$dirty ">Votre mot de passe doit contenir minimum 8 caractères avec au moins une minuscule, une majuscule, un chiffre et un caractère spécial.</span>
       </b-form-group>
-
-      
-
-      
+      <span class="error " v-if="responseError ">Compte déjà éxistant!</span>
       <div >
-        <b-button class="button" type="submit" variant="primary">Inscription</b-button>
-      
+        <b-button class="button " type="submit" variant="primary">Inscription</b-button>
       </div>
       
     </b-form>
@@ -63,7 +61,10 @@
 
 <script>
 import axios from 'axios';
-
+import Vue from 'vue'
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
+import { required,  } from 'vuelidate/lib/validators'
   export default {
     name:"formSignup",  
     data() {
@@ -77,39 +78,59 @@ import axios from 'axios';
           password: '',
           
         },
-        
-        show: true
+        responseError:false,
+        submited: false,
       }
+      
     },
+    validations: {
+      
+      password:{
+        required,
+        isPasswordStrong(password) {
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&-_]){8,}/;
+            return regex.test(password);
+        }
+      
+      }
+      
+      
+        
+    },      
     methods: {
       onSubmit(event) {
         event.preventDefault()
-        
-          
+        // this.$v.$touch();
+        // this.submited = true;
+        // console.log(!this.$v.password.isPasswordStrong);
+        // console.log(!this.$v.password.$dirty);
+         
     
-          let tutorials ={
-                "lastname": this.form.lastname,
-                "firstname": this.form.firstname,
-                "jobtitle": this.form.jobtitle,
-                "email": this.form.email,
-                "password": this.form.password
-            }
+        let tutorials ={
+              "lastname": this.form.lastname,
+              "firstname": this.form.firstname,
+              "jobtitle": this.form.jobtitle,
+              "email": this.form.email,
+              "password": this.form.password
+          }
            
 
-            const url = "http://localhost:3000/api/auth/signup"
+          const url = "http://localhost:3000/api/auth/signup"
            
-             
+        // if(!this.$v.$invalid) {     
           axios.post(url, tutorials)
             .then(function (response) {
             console.log(response);
-             location.replace("http://localhost:8080/#/")
+            alert('Votre compte a bien été créé! Vous pouvez à présent vous connecter!');
+            location.replace("http://localhost:8080/#/")
             })
-            .catch(function (error) {
+            .catch(error => {
             console.log(error);
+            this.responseError = true;
             });
         
+        // }
       },
-     
     
     }
   }
@@ -127,5 +148,19 @@ import axios from 'axios';
 .form-group{
     margin-top: 1rem;
 }
+
+.error{
+  background-color: #CF5158;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  
+  border-radius: 5px;
+}
+
+#input-2{
+  margin-bottom: 1rem;
+}
+
 
 </style>

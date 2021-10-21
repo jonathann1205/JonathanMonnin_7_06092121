@@ -1,34 +1,18 @@
 <template>
   <div class="box-form d-flex justify-content-center align-items-center ">
-    <b-form class="col-8 col-md-4" @submit="onSubmit"  >
-      <b-form-group
-        id="input-group-1"
-        label="Email "
-        label-for="input-1"
-        description=""
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.email"
-          type="email"
-          placeholder=" email"
-          required
-        ></b-form-input>
+    <b-form class="col-10 col-md-4  " @submit="onSubmit"  >
+      <b-form-group class="input" id="input-group-1" label="Email " label-for="input-1" description="">
+        <b-form-input id="input-1" v-model="form.email" type="email" placeholder=" Email" required></b-form-input>
       </b-form-group>
 
-      <b-form-group  id="input-group-2" label="mot de passe" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="form.password"
-          placeholder="mot de passe"
-          required
-        ></b-form-input>
+      <b-form-group class="input"  id="input-group-2" label="Mot de passe" label-for="input-2">
+        <b-form-input id="input-2" v-model="form.password" placeholder="Mot de passe" required></b-form-input>
       </b-form-group>
 
+      <span class="error " v-if="responseError ">{{responseTextError}}</span>
       
       <div >
         <b-button class="button" type="submit"  variant="primary">Connexion</b-button>
-      
       </div>
       
     </b-form>
@@ -37,7 +21,9 @@
 </template>
 
 <script>
+
 import axios from 'axios';
+
 
 
   export default {
@@ -47,12 +33,13 @@ import axios from 'axios';
           email: '',
           password: '',
           connecter:'',
+          
         },
-        
-    
+        responseError: false, 
+        responseTextError :'',
       }
     },
-  
+     
     methods: {
       onSubmit(event) {
         event.preventDefault()
@@ -72,13 +59,14 @@ import axios from 'axios';
               localStorage.setItem('token',response.data.token)
               localStorage.setItem('userId', parseInt(response.data.id));
               localStorage.setItem('lastname', (response.data.lastname));
-              console.log(response.data);
               location.replace("http://localhost:8080/#/Mur")
               localStorage.setItem('connect', true);  
               
             })
-            .catch(function (error) {
-            console.log(error);
+            .catch(error => {
+            this.responseTextError = error.response.data.error ;
+            this.responseError = true;
+            
             });
         
         
@@ -105,6 +93,19 @@ import axios from 'axios';
   margin: 1rem;
 }
 
+.input{
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  
+}
+
+.error{
+  background-color: #CF5158;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
 
 
 </style>

@@ -1,17 +1,10 @@
 const express = require('express');
 const path = require('path');
-// var cors = require('cors')
+
 require('dotenv').config();
 
 
 const db = require("./models");
-
-// var corsOptions = {
-//   origin: "http://localhost:8080"
-// };
-
-// app.use(cors(corsOptions));
-
 
 
 const userRoutes = require('./routes/user.routes');

@@ -8,7 +8,10 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta:{
+      title:'Connexion',
+    }
   },
   {
     path: '/Signup',
@@ -16,7 +19,10 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Signup.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/Signup.vue'),
+    meta:{
+      title:'Inscription',
+    }
   },
   {
     path: '/Mur',
@@ -24,7 +30,10 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Mur.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/Mur.vue'),
+    meta:{
+      title:'Groupomania',
+    }
   },
   {
     path: '/Post',
@@ -32,16 +41,12 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Post.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/Post.vue'),
+    meta:{
+      title:'Groupomania',
+    }
   },
-  {
-    path: '/Deconnexion',
-    name: 'Deconnexion',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Deconnexion.vue')
-  },
+ 
   
 
 
@@ -51,6 +56,10 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+router.afterEach((to) =>{
+  document.title = to.meta.title;
 })
 
 export default router

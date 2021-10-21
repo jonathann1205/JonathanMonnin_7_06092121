@@ -2,7 +2,7 @@
     
     <div>
         <b-button class="btn-retour col-5 col-md-3 rounded  " v-on:click="goBack()" >Retour</b-button>
-        <h1>lfmqfùjq</h1>
+        <h1>Commenter ce Post</h1>
         <div class=" col-12 d-flex justify-content-center" >
             <div class=" col-12 col-md-4 border rounded border-dark m-1 ">
                 <h2>{{articles.message}}</h2>
