@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    
     <formLogin/>
-    
   </div>
 </template>
 

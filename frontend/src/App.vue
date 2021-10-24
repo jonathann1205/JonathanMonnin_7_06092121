@@ -5,17 +5,11 @@
               <div  class="logo">
                 <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.svg">
               </div>
-            </a>
-              <div class=" navbar-nav mr-auto ">
-                <li class="nav-item d-flex flex-row justify-content-center ">
-                  <router-link to="/Signup" class="nav-link 1" v-show="!connecter" >Inscription</router-link>
-                  <router-link to="/" class="nav-link 2" v-show="!connecter" >Connexion</router-link>
-                </li>
-              </div>
-              <div class="line"></div>
+            </a> 
+            <div class="line"></div>
           </nav>
         <div>
-          <router-view/>
+          <router-view />
         </div>
       
     </div>
@@ -29,34 +23,14 @@
 export default {
   data(){
     return {
-      connecter: false,
+      
     }
   },
-  methods: {
-    
   
-       
-  },
 
 
 
-    mounted() {
-    
-    let connect = localStorage.getItem('connect');
-    console.log(localStorage.getItem('connect'));
-    this.connecter = connect; 
-   
-    if(connect){
-      this.connecter = true;
-       this.$forceUpdate();
-      console.log(4);
-    } else {
-      this.connecter = false;
-      console.log(5);
-    }
 
-    console.log(this.connecter);
-  }
  
   
 

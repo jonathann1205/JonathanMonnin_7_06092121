@@ -1,11 +1,14 @@
 <template>
 <div class="bodyPost">
-    <div class="createPost">
-       <CreatePost/> 
+    <div class=" col-12  d-flex flex-row justify-content-center ">
+        <div class="createPost">
+        <CreatePost/> 
+        </div>
+        <div class="btnDeco">
+            <BtnDeco/>
+        </div>
     </div>
-    <div class="btnDeco">
-        <BtnDeco/>
-    </div>
+    
     <div class="col-12 post">
     <div class="d-flex flex-row">
         <h1 class=" col-12 ">Ce que vos collegues ont posté</h1>
@@ -124,11 +127,9 @@ a {
     
 }
 
-.btnDeco{
-    position: absolute;
-    width: 10rem;
-    height: auto;
-    top: 2.2%;
-    left: 90.4%;
+.createPost{
+    margin-right: 5rem;
 }
+
+
 </style>

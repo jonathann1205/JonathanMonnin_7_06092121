@@ -19,13 +19,10 @@
                     <div v-for="(commentaire , idx) in Commentaires" v-bind:key="idx">
                         <p>Commenter par {{commentaire.lastnameUser}} </p>
                         <b-card :img-src="commentaire.image" img-alt="Card image" img-top>
-                        <b-card-text>
-                        <p> {{commentaire.message}} </p>
-                        </b-card-text>
-                        
-                    </b-card>
-                        
-                        
+                            <b-card-text>
+                                <p> {{commentaire.message}} </p>
+                            </b-card-text>
+                        </b-card>      
                     </div>   
                 </b-card-footer>
             </div>

@@ -1,4 +1,9 @@
 <template>
+<div>
+  <div>
+    <BtnCone/>
+  </div>
+  <h1>Inscription</h1>
   <div class="box-form d-flex justify-content-center align-items-center ">
     <b-form class="col-8 col-md-4" @submit="onSubmit" >
 
@@ -45,9 +50,11 @@
           v-model="form.password"
           type="password"
           placeholder="mot de passe"
+          name="password"
+          class="{ 'is-invalid': isSubmitted && $v.Form.password.$error }"
           required
         ></b-form-input>
-        <span class="error" v-if="(!$v.password.isPasswordStrong) && $v.password.$dirty ">Votre mot de passe doit contenir minimum 8 caractères avec au moins une minuscule, une majuscule, un chiffre et un caractère spécial.</span>
+        <span class="error" v-if="(!$v.form.password.isPasswordStrong) && submited ">Votre mot de passe doit contenir minimum 8 caractères avec au moins une minuscule, une majuscule, un chiffre et un caractère spécial.</span>
       </b-form-group>
       <span class="error " v-if="responseError ">Compte déjà éxistant!</span>
       <div >
@@ -57,6 +64,8 @@
     </b-form>
     
   </div>
+</div>
+  
 </template>
 
 <script>
@@ -65,8 +74,13 @@ import Vue from 'vue'
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
 import { required,  } from 'vuelidate/lib/validators'
+import BtnCone from './btnCone.vue';
   export default {
-    name:"formSignup",  
+    name:"formSignup",
+    components: {
+      BtnCone,
+    
+    },  
     data() {
       return {
         form: {
@@ -84,12 +98,14 @@ import { required,  } from 'vuelidate/lib/validators'
       
     },
     validations: {
+      form:{
+        password:{
+          required,
+          isPasswordStrong(password) {
+              const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&-_]){8,}/;
+              return regex.test(password);
+          }
       
-      password:{
-        required,
-        isPasswordStrong(password) {
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&-_]){8,}/;
-            return regex.test(password);
         }
       
       }
@@ -100,8 +116,8 @@ import { required,  } from 'vuelidate/lib/validators'
     methods: {
       onSubmit(event) {
         event.preventDefault()
-        // this.$v.$touch();
-        // this.submited = true;
+        this.$v.$touch();
+        this.submited = true;
         // console.log(!this.$v.password.isPasswordStrong);
         // console.log(!this.$v.password.$dirty);
          
@@ -117,7 +133,7 @@ import { required,  } from 'vuelidate/lib/validators'
 
           const url = "http://localhost:3000/api/auth/signup"
            
-        // if(!this.$v.$invalid) {     
+        if(!this.$v.$invalid) {     
           axios.post(url, tutorials)
             .then(function (response) {
             console.log(response);
@@ -129,7 +145,7 @@ import { required,  } from 'vuelidate/lib/validators'
             this.responseError = true;
             });
         
-        // }
+        }
       },
     
     }

@@ -1,42 +1,55 @@
 <template>
-  <div class="box-form d-flex justify-content-center align-items-center ">
-    <b-form class="col-10 col-md-4  " @submit="onSubmit"  >
-      <b-form-group class="input" id="input-group-1" label="Email " label-for="input-1" description="">
-        <b-form-input id="input-1" v-model="form.email" type="email" placeholder=" Email" required></b-form-input>
-      </b-form-group>
+  <div>
+    <div>
+      <BtnInscrip/>
+    </div>
+    <h1>Connexion</h1>
+    <div class="box-form d-flex justify-content-center  ">
+      <b-form class="col-10 col-md-4  " @submit="onSubmit"  >
+        <b-form-group class="input" id="input-group-1" label="Email " label-for="input-1" description="">
+          <b-form-input id="input-1" v-model="form.email" type="email" placeholder=" Email" required></b-form-input>
+        </b-form-group>
 
-      <b-form-group class="input"  id="input-group-2" label="Mot de passe" label-for="input-2">
-        <b-form-input id="input-2" v-model="form.password" placeholder="Mot de passe" required></b-form-input>
-      </b-form-group>
+        <b-form-group class="input"  id="input-group-2" label="Mot de passe" label-for="input-2">
+          <b-form-input id="input-2" v-model="form.password" placeholder="Mot de passe" required></b-form-input>
+        </b-form-group>
 
-      <span class="error " v-if="responseError ">{{responseTextError}}</span>
+        <span class="error " v-if="responseError ">{{responseTextError}}</span>
+        
+        <div >
+          <b-button class="button" type="submit"   variant="primary">Connexion</b-button>
+        </div>
+        
+      </b-form>
       
-      <div >
-        <b-button class="button" type="submit"  variant="primary">Connexion</b-button>
-      </div>
-      
-    </b-form>
-    
+    </div>
   </div>
 </template>
 
 <script>
 
 import axios from 'axios';
+import BtnInscrip from './btnInscrip.vue';
+
 
 
 
   export default {
+    components: {
+      BtnInscrip
+    
+    },
     data() {
       return {
         form: {
           email: '',
           password: '',
-          connecter:'',
+          
           
         },
         responseError: false, 
         responseTextError :'',
+     
       }
     },
      
@@ -49,10 +62,10 @@ import axios from 'axios';
                 "email": this.form.email,
                 "password": this.form.password
             }
-            console.log(userLogin);
+          console.log(userLogin);
 
-            const url = "http://localhost:3000/api/auth/login"
-           
+          const url = "http://localhost:3000/api/auth/login"
+          
              
           axios.post(url, userLogin)
             .then(function (response) {
@@ -73,7 +86,7 @@ import axios from 'axios';
 
       },
 
-      
+  
       
     
    },
@@ -94,7 +107,7 @@ import axios from 'axios';
 }
 
 .input{
-  margin-top: 1.5rem;
+  // margin-top: 1.5rem;
   margin-bottom: 1rem;
   
 }
