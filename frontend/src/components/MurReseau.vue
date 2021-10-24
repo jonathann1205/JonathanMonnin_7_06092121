@@ -1,38 +1,35 @@
 <template>
-<div class="bodyPost">
+  <div class="bodyPost">
     <div class=" col-12  d-flex flex-row justify-content-center ">
-        <div class="createPost">
-        <CreatePost/> 
-        </div>
-        <div class="btnDeco">
-            <BtnDeco/>
-        </div>
+      <div class="createPost">
+      <CreatePost/> 
+      </div>
+      <div class="btnDeco">
+          <BtnDeco/>
+      </div>
     </div>
     
     <div class="col-12 post">
-    <div class="d-flex flex-row">
-        <h1 class=" col-12 ">Ce que vos collegues ont posté</h1>
-        
-    </div>
-    <div class=" col-12  "  v-for="(article , idx) in articles" v-bind:key="idx">
+      <div class="d-flex flex-row">
+        <h1 class=" col-12 ">Ce que vos collegues ont posté</h1>    
+      </div>
+      <div class=" col-12  "  v-for="(article , idx) in articles" v-bind:key="idx">
         <a :href="'/#/Post?id='+article.id" class="  col-12 d-flex justify-content-center" >
-            <div class="cardPost col-12 col-md-4 border rounded border-dark m-1 ">
-                <h2>{{article.message}}</h2>
-                <b-card-group deck>
-                    <b-card class="cardPostImg" :img-src="article.image" img-alt="Card image" img-top>
-                        <b-card-text>
-                        <p>Poster par {{article.lastnameUser}} </p>
-                        </b-card-text>
-                        
-                    </b-card>
-                </b-card-group>
-            </div>
+          <div class="cardPost col-12 col-md-4 border rounded border-dark m-1 ">
+            <h2>{{article.message}}</h2>
+            <b-card-group deck>
+              <b-card class="cardPostImg" :img-src="article.image" img-alt="Card image" img-top>
+                <b-card-text>
+                  <p>Poster par {{article.lastnameUser}} </p>
+                </b-card-text>
+                  
+              </b-card>
+            </b-card-group>
+          </div>
         </a>
-    </div>
+      </div>
     </div>    
-</div>            
-           
-        
+  </div>            
 </template>
 
 <script>

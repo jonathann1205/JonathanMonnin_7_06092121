@@ -1,18 +1,15 @@
 <template>
-    <div id="app">
-          <nav class="navbar navbar-expand d-flex flex-wrap " id="nav">
-            <a href="/mur">
-              <div  class="logo">
-                <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.svg">
-              </div>
-            </a> 
-            <div class="line"></div>
-          </nav>
-        <div>
-          <router-view />
-        </div>
-      
+  <div id="app">
+    <nav class="navbar navbar-expand d-flex flex-wrap " id="nav">
+      <div  class="logo">
+        <img alt="Vue logo" src="./assets/icon-left-font-monochrome-white.svg">
+      </div>
+      <div class="line"></div>
+    </nav>
+    <div>
+      <router-view />
     </div>
+  </div>
 </template>
 
 
@@ -68,7 +65,7 @@ a {
   
   
     & .logo{
-      margin-left: 2%;
+      margin-left: 0%;
       @media (max-width: 350px) {
         margin-left: 0%;
       }

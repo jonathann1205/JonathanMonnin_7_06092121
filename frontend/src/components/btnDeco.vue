@@ -1,7 +1,7 @@
 <template>
-    <div id="deconnexion"> 
-       <b-button class="btn-retour col-12  rounded  " v-on:click="ConnectFalse" > Deconnexion</b-button>
-    </div>
+  <div id="deconnexion"> 
+    <b-button class="btn-retour col-12  rounded  " v-on:click="ConnectFalse" > Deconnexion</b-button>
+  </div>
 </template>
 
 <script>

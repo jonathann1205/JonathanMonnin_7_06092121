@@ -1,7 +1,7 @@
 <template>
-    <div id="inscription"> 
-       <b-button class="btn-retour col-12 col-md-4 rounded  " v-on:click="pageInscription" > Inscription</b-button>
-    </div>
+  <div id="inscription"> 
+    <b-button class="btn-retour col-12 col-md-4 rounded  " v-on:click="pageInscription" > Inscription</b-button>
+  </div>
 </template>
 
 <script>

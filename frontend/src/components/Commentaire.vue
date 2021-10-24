@@ -1,31 +1,31 @@
 <template>
-            <div>
-            <!--Bouton pour poster un message-->
-            <b-button @click="show=true" v-model="articles" class="modal__button">COMMENTER</b-button>
-            
-            <b-modal v-model="show" title="Création d'un commentaire" class="modal__title">
-                <b-container fluid>
-                    <div class="article">
-                        <form method="POST" v-on:submit.prevent="createCommentaire()">
-                        <div>
-                            <input class="article__input" type="textarea" name="message" aria-label="Contenu du message" v-model="message" placeholder="Votre message ...">
-                            <span v-if="(!$v.message.required && $v.message.$dirty) && submited">Veuillez ajouter un message</span><br>
-                        </div> 
-                        <div>
-                            <input class="article__file" type="file" name="image" aria-label="Fichier à sélectionner" @change="onFileSelected">
-                            <span v-if="(!$v.selectedFile.required && $v.selectedFile.$dirty) && submited">Veuillez ajouter une image</span>
-                            <span v-if="selectedFile">Image sélectionnée : {{ selectedFile.name }}</span><br>
-                        </div> 
-                            <button class="article__button" type="submit" id="btn-send-publication">COMMENTER</button>
-                        </form>
-                    </div>
-                </b-container>
-                <!--Footer du modulable-->
-                <template #modal-footer visibilite="false">
-                    <div></div>
-                </template>
-            </b-modal>
-        </div>
+  <div>
+      
+    <b-button @click="show=true" v-model="articles" class="modal__button">COMMENTER</b-button>
+    
+    <b-modal v-model="show" title="Création d'un commentaire" class="modal__title">
+        <b-container fluid>
+          <div class="article">
+              <form method="POST" v-on:submit.prevent="createCommentaire()">
+                <div>
+                    <input class="article__input" type="textarea" name="message" aria-label="Contenu du message" v-model="message" placeholder="Votre message ...">
+                    <span v-if="(!$v.message.required && $v.message.$dirty) && submited">Veuillez ajouter un message</span><br>
+                </div> 
+                <div>
+                    <input class="article__file" type="file" name="image" aria-label="Fichier à sélectionner" @change="onFileSelected">
+                    <span v-if="(!$v.selectedFile.required && $v.selectedFile.$dirty) && submited">Veuillez ajouter une image</span>
+                    <span v-if="selectedFile">Image sélectionnée : {{ selectedFile.name }}</span><br>
+                </div> 
+                  <button class="article__button" type="submit" id="btn-send-publication">COMMENTER</button>
+              </form>
+          </div>
+        </b-container>
+        
+        <template #modal-footer visibilite="false">
+            <div></div>
+        </template>
+    </b-modal>
+  </div>
 </template>
 
 <script>

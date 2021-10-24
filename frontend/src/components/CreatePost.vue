@@ -1,34 +1,34 @@
 <template>
-    <main>
-        <div>
-            <!--Bouton pour poster un message-->
-            <b-button @click="show=true" class="modal__button">Poster un message !</b-button>
-            <!--En-tête du modulable-->
-            <b-modal v-model="show" title="Création d'un message" class="modal__title" ok-only>
-                <!--Contenu du modulable-->
-                <b-container fluid>
-                    <div class="article">
-                        <form method="POST" v-on:submit.prevent="create()">
-                        <div>
-                            <input class="article__input" type="textarea" name="message" aria-label="Contenu du message" v-model="message" placeholder="Votre message ...">
-                            <span v-if="(!$v.message.required && $v.message.$dirty) && submited">Veuillez ajouter un message</span><br>
-                        </div>
-                        <div>
-                            <input class="article__file" type="file" name="image" aria-label="Fichier à sélectionner" @change="onFileSelected">
-                            <span v-if="(!$v.selectedFile.required && $v.selectedFile.$dirty) && submited">Veuillez ajouter une image</span>
-                            <span v-if="selectedFile">Image sélectionnée : {{ selectedFile.name }}</span><br>
-                        </div>  
-                            <button class="article__button" type="submit" id="btn-send-publication">PUBLIER</button>
-                        </form>
-                    </div>
-                </b-container>
-                <template #modal-footer visibilite="false">
-                    <div></div>
-                </template>
-               
-            </b-modal>
-        </div>
-    </main>
+  <main>
+    <div>
+      
+      <b-button @click="show=true" class="modal__button">Poster un message !</b-button>
+      
+      <b-modal v-model="show" title="Création d'un message" class="modal__title" ok-only>
+          
+        <b-container fluid>
+          <div class="article">
+            <form method="POST" v-on:submit.prevent="create()">
+              <div>
+                  <input class="article__input" type="textarea" name="message" aria-label="Contenu du message" v-model="message" placeholder="Votre message ...">
+                  <span v-if="(!$v.message.required && $v.message.$dirty) && submited">Veuillez ajouter un message</span><br>
+              </div>
+              <div>
+                  <input class="article__file" type="file" name="image" aria-label="Fichier à sélectionner" @change="onFileSelected">
+                  <span v-if="(!$v.selectedFile.required && $v.selectedFile.$dirty) && submited">Veuillez ajouter une image</span>
+                  <span v-if="selectedFile">Image sélectionnée : {{ selectedFile.name }}</span><br>
+              </div>  
+                <button class="article__button" type="submit" id="btn-send-publication">PUBLIER</button>
+            </form>
+          </div>
+        </b-container>
+        <template #modal-footer visibilite="false">
+            <div></div>
+        </template>
+          
+      </b-modal>
+    </div>
+  </main>
 </template>
 
 <script>

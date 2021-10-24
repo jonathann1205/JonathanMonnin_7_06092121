@@ -1,14 +1,9 @@
 <template>
-    
   <div>
-    
     <div>
-        <murReseau/>
-    </div>
-      
+      <murReseau/>
+    </div>  
   </div>
-        
-    
 </template>
 
 <script>

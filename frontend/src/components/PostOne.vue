@@ -1,37 +1,36 @@
 <template>
     
-    <div>
-        <b-button class="btn-retour col-5 col-md-3 rounded  " v-on:click="goBack()" >Retour</b-button>
-        <h1>Commenter ce Post</h1>
-        <div class=" col-12 d-flex justify-content-center" >
-            <div class=" col-12 col-md-4 border rounded border-dark m-1 ">
-                <h2>{{articles.message}}</h2>
-                <b-card-group deck>
-                    <b-card :img-src="articles.image" img-alt="Card image" img-top>
-                       
-                        <b-card-text class="post">
-                       <p>Poster par {{articles.lastnameUser}}  </p>
-                        </b-card-text>
-                    </b-card>
-                </b-card-group>
-                <b-card-footer>
-                    <a  class="article__comment"><Commentaire/></a>
-                    <div v-for="(commentaire , idx) in Commentaires" v-bind:key="idx">
-                        <p>Commenter par {{commentaire.lastnameUser}} </p>
-                        <b-card :img-src="commentaire.image" img-alt="Card image" img-top>
-                            <b-card-text>
-                                <p> {{commentaire.message}} </p>
-                            </b-card-text>
-                        </b-card>      
-                    </div>   
-                </b-card-footer>
-            </div>
-        </div>
-        <div  class=" col-12  d-flex justify-content-center">
-            <b-button v-on:click="deleteArticle(articles.id), deleteCommentaire(id)" v-if="articles.userId == this.userid" variant="danger">Supprimer</b-button>
-            <b-button v-on:click="modifyArticles(articles.id)" v-if="articles.userId == userid" variant="success"><ModifPost/></b-button>
-        </div>
+  <div>
+    <b-button class="btn-retour col-5 col-md-3 rounded  " v-on:click="goBack()" >Retour</b-button>
+    <h1>Commenter ce Post</h1>
+    <div class=" col-12 d-flex justify-content-center" >
+      <div class=" col-12 col-md-4 border rounded border-dark m-1 ">
+        <h2>{{articles.message}}</h2>
+        <b-card-group deck>
+          <b-card :img-src="articles.image" img-alt="Card image" img-top>
+            <b-card-text class="post">
+              <p>Poster par {{articles.lastnameUser}}  </p>
+            </b-card-text>
+          </b-card>
+        </b-card-group>
+        <b-card-footer>
+          <a  class="article__comment"><Commentaire/></a>
+          <div v-for="(commentaire , idx) in Commentaires" v-bind:key="idx">
+            <p>Commenter par {{commentaire.lastnameUser}} </p>
+            <b-card :img-src="commentaire.image" img-alt="Card image" img-top>
+              <b-card-text>
+                  <p> {{commentaire.message}} </p>
+              </b-card-text>
+            </b-card>      
+          </div>   
+        </b-card-footer>
+      </div>
     </div>
+    <div  class=" col-12  d-flex justify-content-center">
+      <b-button v-on:click="deleteArticle(articles.id), deleteCommentaire(id)" v-if="articles.userId == this.userid" variant="danger">Supprimer</b-button>
+      <b-button v-on:click="modifyArticles(articles.id)" v-if="articles.userId == userid" variant="success"><ModifPost/></b-button>
+  </div>
+</div>
         
     
 </template>
