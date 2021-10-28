@@ -7,6 +7,9 @@
       <div class="btnDeco">
           <BtnDeco/>
       </div>
+      <div class="btnProfil">
+          <BtnProfil/>
+      </div>
     </div>
     
     <div class="col-12 post">
@@ -36,16 +39,17 @@
 import axios from "axios"
 import CreatePost from "./CreatePost.vue";
 import BtnDeco from "./btnDeco.vue";
+import BtnProfil from "./btnProfil.vue";
 
 
 
 
 export default {
     components: {
-       CreatePost, 
-       BtnDeco 
-
-    },
+    CreatePost,
+    BtnDeco,
+    BtnProfil
+},
    
         data() {
             return {

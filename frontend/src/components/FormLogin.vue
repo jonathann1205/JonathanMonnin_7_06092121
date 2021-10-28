@@ -11,7 +11,7 @@
         </b-form-group>
 
         <b-form-group class="input"  id="input-group-2" label="Mot de passe" label-for="input-2">
-          <b-form-input id="input-2" v-model="form.password" placeholder="Mot de passe" required></b-form-input>
+          <b-form-input id="input-2" v-model="form.password" type="password"  placeholder="Mot de passe"  required></b-form-input>
         </b-form-group>
 
         <span class="error " v-if="responseError ">{{responseTextError}}</span>
@@ -72,9 +72,10 @@ import BtnInscrip from './btnInscrip.vue';
               localStorage.setItem('token',response.data.token)
               localStorage.setItem('userId', parseInt(response.data.id));
               localStorage.setItem('lastname', (response.data.lastname));
+              localStorage.setItem('role', (response.data.role));
               location.replace("http://localhost:8080/#/Mur")
               localStorage.setItem('connect', true);  
-              
+              console.log(response);
             })
             .catch(error => {
             this.responseTextError = error.response.data.error ;

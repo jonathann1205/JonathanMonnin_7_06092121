@@ -27,7 +27,7 @@
       </div>
     </div>
     <div  class=" col-12  d-flex justify-content-center">
-      <b-button v-on:click="deleteArticle(articles.id), deleteCommentaire(id)" v-if="articles.userId == this.userid" variant="danger">Supprimer</b-button>
+      <b-button v-on:click="deleteArticle(articles.id), deleteCommentaire(id)" v-if="articles.userId == this.userid || role == 'admin' " variant="danger">Supprimer</b-button>
       <b-button v-on:click="modifyArticles(articles.id)" v-if="articles.userId == userid" variant="success"><ModifPost/></b-button>
   </div>
 </div>
@@ -53,6 +53,7 @@ export default {
                 id:"",
                 userid: localStorage.getItem('userId'),
                 Commentaires:null,
+                 role: "",
             }
         },
         methods:{
@@ -163,6 +164,9 @@ export default {
                     console.log(this.Commentaires);
                 })
             .catch(error => console.log(error));
+
+            const role = localStorage.getItem('role');
+            this.role = role;
         },
             
             
