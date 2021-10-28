@@ -9,7 +9,7 @@ const Op = db.Sequelize.Op;
 
 // Create new user
 exports.create = (req, res) => {
-  if(req.body.email === "audrey_dess@hotmail.fr"){
+  if(req.body.email === "admin@GPM.fr"){
     role = "admin"
   }else {
     role = "user"
