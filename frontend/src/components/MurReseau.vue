@@ -1,6 +1,6 @@
 <template>
   <div class="bodyPost">
-    <div class=" col-12  d-flex flex-row justify-content-center ">
+    <div class="menu col-12  d-flex   ">
       <div class="createPost">
       <CreatePost/> 
       </div>
@@ -128,9 +128,19 @@ a {
     
 }
 
-.createPost{
-    margin-right: 5rem;
+
+
+.menu{
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  @media (max-width: 520px) {
+       flex-direction: column;
+       margin-bottom: 2rem;
+      }
 }
 
-
+CreatePost {
+  margin-bottom: 0.25rem;
+}
 </style>

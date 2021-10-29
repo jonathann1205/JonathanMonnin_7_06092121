@@ -2,7 +2,7 @@
   <main>
     <div>
       
-      <b-button @click="show=true" class="modal__button">Poster un message !</b-button>
+      <b-button @click="show=true" class="modal__button mb-2">Poster un message !</b-button>
       
       <b-modal v-model="show" title="Création d'un message" class="modal__title" ok-only>
           

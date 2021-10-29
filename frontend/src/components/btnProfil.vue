@@ -1,6 +1,6 @@
 <template>
   <div id="profil"> 
-    <b-button class="btn-retour col-12  rounded  " v-on:click="pageProfil" >Mon profil</b-button>
+    <b-button class="btn-prolfil   rounded mb-2 " v-on:click="pageProfil" >Mon profil</b-button>
   </div>
 </template>
 
@@ -29,8 +29,7 @@ export default {
 <style lang="scss">
 
 #profil{
-  margin-bottom: 3rem;
-  margin-left: 4rem;
+  
 }
 
 
